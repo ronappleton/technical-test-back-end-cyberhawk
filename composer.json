@@ -53,7 +53,7 @@
             "./vendor/bin/pint --dirty"
         ],
         "pint:fix": [
-            "./vendor/bin/pint --fix"
+            "./vendor/bin/pint"
         ]
     },
     "extra": {
