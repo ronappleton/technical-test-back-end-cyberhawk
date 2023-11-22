@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Contracts;
 
-interface FarmService extends DataService
+interface TurbineService extends DataService
 {
 
 }

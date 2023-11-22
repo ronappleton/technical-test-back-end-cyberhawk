@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\FarmController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,18 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'farms'], function () {
-    Route::get(
-        '/',
-        [
-            'uses' => FarmController::class,
-            'method' => 'index',
-            'as' => 'farms.index',
-        ]
-    );
-    Route::get('/{farmId}',
-        [
-            'uses' => FarmController::class,
-            'method' => 'show',
-            'as' => 'farms.show',
-        ]);
+    Route::get('/', 'FarmController@index');
+    Route::get('/{farmId}', 'FarmController@show');
+});
+
+Route::group(['prefix' => 'turbines'], function () {
+    Route::get('/', 'TurbineController@index');
+    Route::get('/{turbineId}', 'TurbineController@show');
 });

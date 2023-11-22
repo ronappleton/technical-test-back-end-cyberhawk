@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Farm;
+use App\Models\Turbine;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class FarmFactory extends Factory
+class TurbineFactory extends Factory
 {
-    protected $model = Farm::class;
+    protected $model = Turbine::class;
 
     public function definition(): array
     {
         return [
-            'name' => sprintf('%s Farm', $this->faker->lastName()) ,
+            'name' => $this->faker->name(),
+            'farm_id' => $this->faker->randomNumber(),
+            'lat' => $this->faker->latitude(),
+            'lng' => $this->faker->longitude(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
