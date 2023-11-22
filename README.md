@@ -78,6 +78,19 @@ This is a place for you to add your notes, plans, thinking and any feedback you 
 
 ### Notes
 
-I have had to alter the Sail configuration as it would not find the package.
+I have had to alter the Sail configuration as it would not find the package *php8.1-dev*.
+
+Framework upgraded to version 10.
+
+Installed laravel/pint and added pint.json in project root to set the prefix to PSR12 coding standards, then added
+myself a pre-commit hook to ensure I follow the standards.
+
+Introduced Service layer to handle the business logic and keep the controllers clean.
+
+Added OpenApi Validator to validate the requests and responses against the OpenApi spec in tests.
+
+[kirschbaum-development/laravel-openapi-validator (MIT License)](https://kirschbaumdevelopment.com/insights/laravel-openapi-validator)
+
+Added Farms tests, migration, model, resource, factory, routes, and controller.
 
 
