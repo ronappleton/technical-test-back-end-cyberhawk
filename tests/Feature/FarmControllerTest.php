@@ -1,0 +1,51 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\Feature;
+
+use Database\Seeders\DemoDataSeeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Kirschbaum\OpenApiValidator\ValidatesOpenApiSpec;
+use Tests\TestCase;
+
+class FarmControllerTest extends TestCase
+{
+    use RefreshDatabase;
+    use ValidatesOpenApiSpec;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->seed(DemoDataSeeder::class);
+    }
+
+    public function testGetFarms(): void
+    {
+        $this->getJson('/api/farms')
+            ->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    '*' => [
+                        'id',
+                        'name',
+                        'created_at',
+                        'updated_at',
+                    ],
+                ],
+            ]);
+    }
+
+    public function testGetFarm(): void
+    {
+        $this->getJson('/api/farms/1')
+            ->assertOk()
+            ->assertJsonStructure([
+                'id',
+                'name',
+                'created_at',
+                'updated_at',
+            ]);
+    }
+}
