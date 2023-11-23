@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\ComponentTypeController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\GradeTypeController;
@@ -50,4 +51,15 @@ Route::controller(ComponentTypeController::class)
         Route::get('/component-types/{componentTypeId}', 'show');
     });
 
+Route::controller(ComponentController::class)
+    ->group(function () {
+        Route::get('/components', 'index');
+        Route::get('/components/{componentId}', 'show');
+    });
+
+Route::controller(ComponentController::class)
+    ->group(function () {
+        Route::get('/components', 'index');
+        Route::get('/components/{componentId}', 'show');
+    });
 

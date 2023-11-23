@@ -101,6 +101,8 @@ Added GradeType tests, migration, model, resource, factory, routes, and controll
 
 Added ComponentType tests, migration, model, resource, factory, routes, and controller.
 
+Added Component tests, migration, model, resource, factory, routes, and controller.
+
 
 
 
