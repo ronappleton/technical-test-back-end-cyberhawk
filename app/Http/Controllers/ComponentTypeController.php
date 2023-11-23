@@ -19,8 +19,8 @@ class ComponentTypeController
         return ComponentTypeResource::collection($this->componentTypeService->all());
     }
 
-    public function show(int $componentTypeId)
+    public function show(int $componentType)
     {
-        return ComponentTypeResource::make($this->componentTypeService->findById($componentTypeId));
+        return ComponentTypeResource::make($this->componentTypeService->findById($componentType));
     }
 }

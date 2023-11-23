@@ -18,8 +18,8 @@ class GradeTypeController
         return GradeTypeResource::collection($this->gradeTypeService->all());
     }
 
-    public function show(int $gradeTypeId)
+    public function show(int $gradeType)
     {
-        return GradeTypeResource::make($this->gradeTypeService->findById($gradeTypeId));
+        return GradeTypeResource::make($this->gradeTypeService->findById($gradeType));
     }
 }

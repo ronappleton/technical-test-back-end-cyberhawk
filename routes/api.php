@@ -38,26 +38,6 @@ Route::controller(TurbineController::class)
         Route::get('/turbines/{turbineId}/components/{componentId}', 'component');
     });
 
-Route::controller(InspectionController::class)
-    ->group(function () {
-        Route::get('/inspections', 'index');
-        Route::get('/inspections/{inspectionId}', 'show');
-        Route::get('/inspections/{inspectionId}/grades', 'grades');
-        Route::get('/inspections/{inspectionId}/grades/{gradeId}', 'grade');
-    });
-
-Route::controller(GradeTypeController::class)
-    ->group(function () {
-        Route::get('/grade-types', 'index');
-        Route::get('/grade-types/{gradeTypeId}', 'show');
-    });
-
-Route::controller(ComponentTypeController::class)
-    ->group(function () {
-        Route::get('/component-types', 'index');
-        Route::get('/component-types/{componentTypeId}', 'show');
-    });
-
 Route::controller(ComponentController::class)
     ->group(function () {
         Route::get('/components', 'index');
@@ -66,8 +46,28 @@ Route::controller(ComponentController::class)
         Route::get('/components/{componentId}/grades/{gradeId}', 'grade');
     });
 
+Route::controller(InspectionController::class)
+    ->group(function () {
+        Route::get('/inspections', 'index');
+        Route::get('/inspections/{inspectionId}', 'show');
+        Route::get('/inspections/{inspectionId}/grades', 'grades');
+        Route::get('/inspections/{inspectionId}/grades/{gradeId}', 'grade');
+    });
+
 Route::controller(GradeController::class)
     ->group(function () {
         Route::get('/grades', 'index');
         Route::get('/grades/{gradeId}', 'show');
+    });
+
+Route::controller(ComponentTypeController::class)
+    ->group(function () {
+        Route::get('/component-types', 'index');
+        Route::get('/component-types/{componentType}', 'show');
+    });
+
+Route::controller(GradeTypeController::class)
+    ->group(function () {
+        Route::get('/grade-types', 'index');
+        Route::get('/grade-types/{gradeType}', 'show');
     });
