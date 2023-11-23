@@ -18,14 +18,35 @@ class DemoDataSeeder extends Seeder
     {
         $this->seedGradeTypes();
         $this->seedComponentTypes();
+        $this->seedFarms();
+        $this->seedTurbines();
+        $this->seedGrades();
+    }
 
+    private function seedGradeTypes(): void
+    {
+        for ($i = 1; $i <= 5; $i++) {
+            GradeType::factory()->create([
+                'name' => "Grade {$i}",
+            ]);
+        }
+    }
+
+    private function seedComponentTypes(): void
+    {
+        foreach (['Blade', 'Rotor', 'Hub', 'Generator'] as $componentType) {
+            ComponentType::factory()->create([
+                'name' => $componentType,
+            ]);
+        }
+    }
+
+    private function seedFarms(): void
+    {
         Farm::factory()->count(5)
             ->has(Turbine::factory()->count(5)
                 ->has(Inspection::factory()->count(3)))
             ->create();
-
-        $this->seedTurbines();
-        $this->seedGrades();
     }
 
     private function seedTurbines(): void
@@ -70,23 +91,5 @@ class DemoDataSeeder extends Seeder
                 });
             });
         });
-    }
-
-    private function seedGradeTypes(): void
-    {
-        for ($i = 1; $i <= 5; $i++) {
-            GradeType::factory()->create([
-                'name' => "Grade {$i}",
-            ]);
-        }
-    }
-
-    private function seedComponentTypes(): void
-    {
-        foreach (['Blade', 'Rotor', 'Hub', 'Generator'] as $componentType) {
-            ComponentType::factory()->create([
-                'name' => $componentType,
-            ]);
-        }
     }
 }
