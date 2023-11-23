@@ -18,7 +18,7 @@ class DemoDataSeeder extends Seeder
     {
         $this->seedGradeTypes();
         $this->seedComponentTypes();
-        $this->seedFarms();
+        $this->seedFarm();
         $this->seedTurbines();
         $this->seedGrades();
     }
@@ -41,11 +41,11 @@ class DemoDataSeeder extends Seeder
         }
     }
 
-    private function seedFarms(): void
+    private function seedFarm(): void
     {
-        Farm::factory()->count(5)
+        Farm::factory()->count(1)
             ->has(Turbine::factory()->count(5)
-                ->has(Inspection::factory()->count(3)))
+                ->has(Inspection::factory()->count(1)))
             ->create();
     }
 
