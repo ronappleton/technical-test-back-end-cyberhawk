@@ -93,4 +93,10 @@ Added OpenApi Validator to validate the requests and responses against the OpenA
 
 Added Farms tests, migration, model, resource, factory, routes, and controller.
 
+Added Turbines tests, migration, model, resource, factory, routes, and controller.
+
+Added Inspection tests, migration, model, resource, factory, routes, and controller.
+
+
+
 
