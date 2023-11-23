@@ -120,3 +120,5 @@ Added Grade tests, migration, model, resource, factory, routes, and controller.
 Added Inspection Grades Endpoints, and tests.
 
 Added Component Grades Endpoints, and tests.
+
+Added User, Sanctum, and Authentication.
