@@ -50,4 +50,32 @@ class TurbineControllerTest extends TestCase
                 'updated_at',
             ]);
     }
+
+    public function testGetTurbineInspections(): void
+    {
+        $this->getJson('/api/turbines/1/inspections')
+            ->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    '*' => [
+                        'id',
+                        'turbine_id',
+                        'created_at',
+                        'updated_at',
+                    ],
+                ],
+            ]);
+    }
+
+    public function testGetTurbineInspection(): void
+    {
+        $this->getJson('/api/turbines/1/inspections/1')
+            ->assertOk()
+            ->assertJsonStructure([
+                'id',
+                'turbine_id',
+                'created_at',
+                'updated_at',
+            ]);
+    }
 }

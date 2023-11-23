@@ -9,6 +9,8 @@ use App\Contracts\FarmService as FarmServiceContract;
 use App\Services\FarmService;
 use App\Contracts\TurbineService as TurbineServiceContract;
 use App\Services\TurbineService;
+use App\Contracts\InspectionService as InspectionServiceContract;
+use App\Services\InspectionService;
 
 class ServiceServiceProvider extends ServiceProvider
 {
@@ -21,5 +23,6 @@ class ServiceServiceProvider extends ServiceProvider
     {
         $this->app->bind(FarmServiceContract::class, FarmService::class);
         $this->app->bind(TurbineServiceContract::class, TurbineService::class);
+        $this->app->bind(InspectionServiceContract::class, InspectionService::class);
     }
 }

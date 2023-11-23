@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Contracts\TurbineService;
+use App\Http\Resources\InspectionResource;
 use App\Http\Resources\TurbineResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Routing\Controller;
 
-class TurbineController
+class TurbineController extends Controller
 {
     public function __construct(private readonly TurbineService $turbineService)
     {
@@ -23,5 +25,15 @@ class TurbineController
     public function show(int $turbineId): JsonResource
     {
         return TurbineResource::make($this->turbineService->findById($turbineId));
+    }
+
+    public function inspections(int $turbineId): ResourceCollection
+    {
+        return InspectionResource::collection($this->turbineService->inspections($turbineId));
+    }
+
+    public function inspection(int $turbineId, int $inspectionId): JsonResource
+    {
+        return InspectionResource::make($this->turbineService->inspection($turbineId, $inspectionId));
     }
 }

@@ -10,8 +10,9 @@ use App\Http\Resources\FarmResource;
 use App\Http\Resources\TurbineResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Routing\Controller;
 
-class FarmController
+class FarmController extends Controller
 {
     public function __construct(private readonly FarmService $farmService)
     {

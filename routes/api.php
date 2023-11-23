@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FarmController;
+use App\Http\Controllers\TurbineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::controller(FarmController::class)
     ->group(function () {
         Route::get('/farms', 'index');
-        Route::get('/farms/{farmId}/turbines', 'turbines');
         Route::get('/farms/{farmId}', 'show');
+        Route::get('/farms/{farmId}/turbines', 'turbines');
         Route::get('/farms/{farmId}/turbines/{turbineId}', 'turbine');
     });
 
-Route::group(['prefix' => 'turbines'], function () {
-    Route::get('/', 'TurbineController@index');
-    Route::get('/{turbineId}', 'TurbineController@show');
+Route::controller(TurbineController::class)
+    ->group(function () {
+        Route::get('/turbines', 'index');
+        Route::get('/turbines/{turbineId}', 'show');
+        Route::get('/turbines/{turbineId}/inspections', 'inspections');
+        Route::get('/turbines/{turbineId}/inspections/{inspectionId}', 'inspection');
+    });
+
+Route::group(['prefix' => 'inspections'], function () {
+    Route::get('/', 'InspectionController@index');
+    Route::get('/{inspectionId}', 'InspectionController@show');
 });
