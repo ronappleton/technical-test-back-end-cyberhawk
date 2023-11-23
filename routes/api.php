@@ -32,6 +32,8 @@ Route::controller(TurbineController::class)
         Route::get('/turbines/{turbineId}', 'show');
         Route::get('/turbines/{turbineId}/inspections', 'inspections');
         Route::get('/turbines/{turbineId}/inspections/{inspectionId}', 'inspection');
+        Route::get('/turbines/{turbineId}/components', 'components');
+        Route::get('/turbines/{turbineId}/components/{componentId}', 'component');
     });
 
 Route::group(['prefix' => 'inspections'], function () {

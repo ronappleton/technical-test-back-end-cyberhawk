@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Models\Component;
 use App\Models\Inspection;
 use App\Models\Turbine;
 use App\Services\TurbineService;
@@ -56,5 +57,19 @@ class TurbineServiceTest extends TestCase
         $inspection = $this->turbineService->inspection(1, 1);
         $this->assertInstanceOf(Inspection::class, $inspection);
         $this->assertEquals(1, $inspection->id);
+    }
+
+    public function testComponents(): void
+    {
+        $components = $this->turbineService->components(1);
+        $this->assertInstanceOf(Component::class, $components->first());
+        $this->assertEquals(6, $components->count());
+    }
+
+    public function testComponent(): void
+    {
+        $component = $this->turbineService->component(1, 1);
+        $this->assertInstanceOf(Component::class, $component);
+        $this->assertEquals(1, $component->id);
     }
 }

@@ -23,6 +23,7 @@ use Illuminate\Support\Collection;
  *
  * @property Farm $farm
  * @property Collection $inspections
+ * @property Collection $components
  */
 class Turbine extends Model
 {

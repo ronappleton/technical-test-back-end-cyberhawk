@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Contracts\TurbineService;
+use App\Http\Resources\ComponentResource;
 use App\Http\Resources\InspectionResource;
 use App\Http\Resources\TurbineResource;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -35,5 +36,15 @@ class TurbineController extends Controller
     public function inspection(int $turbineId, int $inspectionId): JsonResource
     {
         return InspectionResource::make($this->turbineService->inspection($turbineId, $inspectionId));
+    }
+
+    public function components(int $turbineId): ResourceCollection
+    {
+        return ComponentResource::collection($this->turbineService->components($turbineId));
+    }
+
+    public function component(int $turbineId, int $componentId): JsonResource
+    {
+        return ComponentResource::make($this->turbineService->component($turbineId, $componentId));
     }
 }

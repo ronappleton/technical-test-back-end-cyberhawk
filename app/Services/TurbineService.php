@@ -23,4 +23,14 @@ class TurbineService extends DataService implements TurbineServiceContract
     {
         return $this->inspections($turbineId)->firstWhere('id', $inspectionId);
     }
+
+    public function components(int $turbineId): Collection
+    {
+        return $this->findById($turbineId)->components;
+    }
+
+    public function component(int $turbineId, int $componentId): Model
+    {
+        return $this->components($turbineId)->firstWhere('id', $componentId);
+    }
 }
