@@ -97,6 +97,6 @@ Added Turbines tests, migration, model, resource, factory, routes, and controlle
 
 Added Inspection tests, migration, model, resource, factory, routes, and controller.
 
-
+Added GradeType tests, migration, model, resource, factory, routes, and controller.
 
 

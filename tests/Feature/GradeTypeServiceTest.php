@@ -38,5 +38,4 @@ class GradeTypeServiceTest extends TestCase
         $this->assertInstanceOf(GradeType::class, $gradeType);
         $this->assertEquals(1, $gradeType->id);
     }
-
 }
