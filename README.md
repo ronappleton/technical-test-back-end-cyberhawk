@@ -99,4 +99,8 @@ Added Inspection tests, migration, model, resource, factory, routes, and control
 
 Added GradeType tests, migration, model, resource, factory, routes, and controller.
 
+Added ComponentType tests, migration, model, resource, factory, routes, and controller.
+
+
+
 
