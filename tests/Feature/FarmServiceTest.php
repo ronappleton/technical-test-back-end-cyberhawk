@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Feature;
 
 use App\Models\Farm;
+use App\Models\Turbine;
 use App\Services\FarmService;
 use Database\Seeders\DemoDataSeeder;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -32,36 +33,27 @@ class FarmServiceTest extends TestCase
     public function testFindById(): void
     {
         $farm = $this->farmService->findById(1);
-
         $this->assertInstanceOf(Farm::class, $farm);
-
-        $this->assertNotNull($farm);
         $this->assertEquals(1, $farm->id);
     }
 
     public function testAll(): void
     {
         $farms = $this->farmService->all();
-
         $this->assertInstanceOf(Farm::class, $farms->first());
-
-        $this->assertNotNull($farms);
         $this->assertEquals(10, $farms->count());
     }
 
     public function testTurbines(): void
     {
         $turbines = $this->farmService->turbines(1);
-
-        $this->assertNotNull($turbines);
         $this->assertEquals(5, $turbines->count());
     }
 
     public function testTurbine(): void
     {
         $turbine = $this->farmService->turbine(1, 1);
-
-        $this->assertNotNull($turbine);
+        $this->assertInstanceOf(Turbine::class, $turbine);
         $this->assertEquals(1, $turbine->id);
     }
 }

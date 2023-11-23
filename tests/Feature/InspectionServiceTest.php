@@ -28,20 +28,14 @@ class InspectionServiceTest extends TestCase
     public function testFindById(): void
     {
         $inspection = $this->inspectionService->findById(1);
-
         $this->assertInstanceOf(Inspection::class, $inspection);
-
-        $this->assertNotNull($inspection);
         $this->assertEquals(1, $inspection->id);
     }
 
     public function testAll(): void
     {
         $inspections = $this->inspectionService->all();
-
         $this->assertInstanceOf(Inspection::class, $inspections->first());
-
-        $this->assertNotNull($inspections);
         $this->assertEquals(150, $inspections->count());
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FarmController;
+use App\Http\Controllers\GradeTypeController;
 use App\Http\Controllers\TurbineController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +36,11 @@ Route::group(['prefix' => 'inspections'], function () {
     Route::get('/', 'InspectionController@index');
     Route::get('/{inspectionId}', 'InspectionController@show');
 });
+
+Route::controller(GradeTypeController::class)
+    ->group(function () {
+        Route::get('/grade-types', 'index');
+        Route::get('/grade-types/{gradeTypeId}', 'show');
+    });
+
+
