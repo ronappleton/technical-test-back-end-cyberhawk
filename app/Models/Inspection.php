@@ -21,6 +21,7 @@ use Illuminate\Support\Collection;
  *
  * @property Turbine $turbine
  * @property Collection $components
+ * @property Collection $grades
  */
 class Inspection extends Model
 {

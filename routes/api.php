@@ -5,6 +5,7 @@ use App\Http\Controllers\ComponentTypeController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GradeTypeController;
+use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\TurbineController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,10 +38,13 @@ Route::controller(TurbineController::class)
         Route::get('/turbines/{turbineId}/components/{componentId}', 'component');
     });
 
-Route::group(['prefix' => 'inspections'], function () {
-    Route::get('/', 'InspectionController@index');
-    Route::get('/{inspectionId}', 'InspectionController@show');
-});
+Route::controller(InspectionController::class)
+    ->group(function () {
+        Route::get('/inspections', 'index');
+        Route::get('/inspections/{inspectionId}', 'show');
+        Route::get('/inspections/{inspectionId}/grades', 'grades');
+        Route::get('/inspections/{inspectionId}/grades/{gradeId}', 'grade');
+    });
 
 Route::controller(GradeTypeController::class)
     ->group(function () {

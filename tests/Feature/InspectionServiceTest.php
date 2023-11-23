@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Models\Grade;
 use App\Models\Inspection;
 use App\Services\InspectionService;
 use Database\Seeders\DemoDataSeeder;
@@ -37,5 +38,19 @@ class InspectionServiceTest extends TestCase
         $inspections = $this->inspectionService->all();
         $this->assertInstanceOf(Inspection::class, $inspections->first());
         $this->assertEquals(150, $inspections->count());
+    }
+
+    public function testGrades(): void
+    {
+        $grades = $this->inspectionService->grades(1);
+        $this->assertInstanceOf(Grade::class, $grades->first());
+        $this->assertEquals(6, $grades->count());
+    }
+
+    public function testGrade(): void
+    {
+        $grade = $this->inspectionService->grade(1, 1);
+        $this->assertInstanceOf(Grade::class, $grade);
+        $this->assertEquals(1, $grade->id);
     }
 }

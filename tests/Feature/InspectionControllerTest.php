@@ -48,4 +48,36 @@ class InspectionControllerTest extends TestCase
                 'updated_at',
             ]);
     }
+
+    public function testGetInspectionGrades(): void
+    {
+        $this->getJson('/api/inspections/1/grades')
+            ->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    '*' => [
+                        'id',
+                        'inspection_id',
+                        'component_id',
+                        'grade_type_id',
+                        'created_at',
+                        'updated_at',
+                    ],
+                ],
+            ]);
+    }
+
+    public function testGetInspectionGrade(): void
+    {
+        $this->getJson('/api/inspections/1/grades/1')
+            ->assertOk()
+            ->assertJsonStructure([
+                'id',
+                'inspection_id',
+                'component_id',
+                'grade_type_id',
+                'created_at',
+                'updated_at',
+            ]);
+    }
 }
