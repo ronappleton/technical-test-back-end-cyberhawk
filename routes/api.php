@@ -71,3 +71,5 @@ Route::controller(GradeTypeController::class)
         Route::get('/grade-types', 'index');
         Route::get('/grade-types/{gradeType}', 'show');
     });
+
+Route::post('/token', 'TokenController');
