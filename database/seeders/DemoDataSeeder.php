@@ -16,24 +16,19 @@ class DemoDataSeeder extends Seeder
 {
     public function run(): void
     {
-        GradeType::factory()->count(5)->create();
+        $this->seedGradeTypes();
+        $this->seedComponentTypes();
 
-        foreach (['Blade', 'Rotor', 'Hub', 'Generator'] as $componentType) {
-            ComponentType::factory()->create([
-                'name' => $componentType,
-            ]);
-        }
-
-        Farm::factory()->count(10)
+        Farm::factory()->count(5)
             ->has(Turbine::factory()->count(5)
                 ->has(Inspection::factory()->count(3)))
             ->create();
 
-        $this->buildTurbines();
-        $this->buildGrades();
+        $this->seedTurbines();
+        $this->seedGrades();
     }
 
-    private function buildTurbines(): void
+    private function seedTurbines(): void
     {
         Turbine::all()->each(function (Turbine $turbine) {
             $rotorType = ComponentType::where('name', 'Rotor')->first();
@@ -63,7 +58,7 @@ class DemoDataSeeder extends Seeder
         });
     }
 
-    private function buildGrades(): void
+    private function seedGrades(): void
     {
         Turbine::all()->each(function (Turbine $turbine) {
             $turbine->inspections->each(function (Inspection $inspection) use ($turbine) {
@@ -75,5 +70,23 @@ class DemoDataSeeder extends Seeder
                 });
             });
         });
+    }
+
+    private function seedGradeTypes(): void
+    {
+        for ($i = 1; $i <= 5; $i++) {
+            GradeType::factory()->create([
+                'name' => "Grade {$i}",
+            ]);
+        }
+    }
+
+    private function seedComponentTypes(): void
+    {
+        foreach (['Blade', 'Rotor', 'Hub', 'Generator'] as $componentType) {
+            ComponentType::factory()->create([
+                'name' => $componentType,
+            ]);
+        }
     }
 }

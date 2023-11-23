@@ -10,8 +10,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin \App\Models\Inspection */
 class InspectionResource extends JsonResource
 {
-    public static $wrap = false;
-
     public function toArray(Request $request): array
     {
         return [

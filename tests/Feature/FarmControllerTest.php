@@ -42,10 +42,12 @@ class FarmControllerTest extends TestCase
         $this->getJson('/api/farms/1')
             ->assertOk()
             ->assertJsonStructure([
-                'id',
-                'name',
-                'created_at',
-                'updated_at',
+                'data' => [
+                    'id',
+                    'name',
+                    'created_at',
+                    'updated_at',
+                ],
             ]);
     }
 
@@ -71,11 +73,13 @@ class FarmControllerTest extends TestCase
         $this->getJson('/api/farms/1/turbines/1')
             ->assertOk()
             ->assertJsonStructure([
-                'id',
-                'name',
-                'farm_id',
-                'created_at',
-                'updated_at',
+                'data' => [
+                    'id',
+                    'name',
+                    'farm_id',
+                    'created_at',
+                    'updated_at',
+                ],
             ]);
     }
 }

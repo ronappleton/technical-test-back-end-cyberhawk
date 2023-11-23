@@ -11,8 +11,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin Turbine */
 class TurbineResource extends JsonResource
 {
-    public static $wrap = false;
-
     public function toArray(Request $request): array
     {
         return [

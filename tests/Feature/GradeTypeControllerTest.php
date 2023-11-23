@@ -42,10 +42,12 @@ class GradeTypeControllerTest extends TestCase
         $this->get('/api/grade-types/1')
             ->assertOk()
             ->assertJsonStructure([
-                'id',
-                'name',
-                'created_at',
-                'updated_at',
+                'data' => [
+                    'id',
+                    'name',
+                    'created_at',
+                    'updated_at',
+                ],
             ]);
     }
 }

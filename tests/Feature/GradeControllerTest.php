@@ -43,15 +43,15 @@ class GradeControllerTest extends TestCase
     {
         $response = $this->get('/api/grades/1');
         $response->assertOk();
-        $response->assertJsonStructure(
-            [
-                'id',
-                'inspection_id',
-                'component_id',
-                'grade_type_id',
-                'created_at',
-                'updated_at',
-            ]
-        );
+        $response->assertJsonStructure([
+                'data' => [
+                    'id',
+                    'inspection_id',
+                    'component_id',
+                    'grade_type_id',
+                    'created_at',
+                    'updated_at',
+                ],
+            ]);
     }
 }

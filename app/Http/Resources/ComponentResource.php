@@ -11,8 +11,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin Component */
 class ComponentResource extends JsonResource
 {
-    public static $wrap = false;
-
     public function toArray(Request $request): array
     {
         return [

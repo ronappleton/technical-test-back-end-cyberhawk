@@ -42,10 +42,12 @@ class ComponentTypeControllerTest extends TestCase
         $this->get('/api/component-types/1')
             ->assertOk()
             ->assertJsonStructure([
-                'id',
-                'name',
-                'created_at',
-                'updated_at',
+                'data' => [
+                    'id',
+                    'name',
+                    'created_at',
+                    'updated_at',
+                ],
             ]);
     }
 }

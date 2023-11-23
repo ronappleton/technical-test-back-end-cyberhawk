@@ -43,11 +43,13 @@ class TurbineControllerTest extends TestCase
         $this->getJson('/api/turbines/1')
             ->assertOk()
             ->assertJsonStructure([
-                'id',
-                'name',
-                'farm_id',
-                'created_at',
-                'updated_at',
+                'data' => [
+                    'id',
+                    'name',
+                    'farm_id',
+                    'created_at',
+                    'updated_at',
+                ],
             ]);
     }
 
@@ -72,10 +74,12 @@ class TurbineControllerTest extends TestCase
         $this->getJson('/api/turbines/1/inspections/1')
             ->assertOk()
             ->assertJsonStructure([
-                'id',
-                'turbine_id',
-                'created_at',
-                'updated_at',
+                'data' => [
+                    'id',
+                    'turbine_id',
+                    'created_at',
+                    'updated_at',
+                ],
             ]);
     }
 
@@ -101,11 +105,13 @@ class TurbineControllerTest extends TestCase
         $this->getJson('/api/turbines/1/components/1')
             ->assertOk()
             ->assertJsonStructure([
-                'id',
-                'component_type_id',
-                'turbine_id',
-                'created_at',
-                'updated_at',
+                'data' => [
+                    'id',
+                    'component_type_id',
+                    'turbine_id',
+                    'created_at',
+                    'updated_at',
+                ],
             ]);
     }
 }

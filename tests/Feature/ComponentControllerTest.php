@@ -42,15 +42,15 @@ class ComponentControllerTest extends TestCase
     {
         $response = $this->get('/api/components/1');
         $response->assertOk();
-        $response->assertJsonStructure(
-            [
+        $response->assertJsonStructure([
+            'data' => [
                 'id',
                 'component_type_id',
                 'turbine_id',
                 'created_at',
                 'updated_at',
-            ]
-        );
+            ],
+        ]);
     }
 
     public function testGrades(): void
@@ -74,14 +74,14 @@ class ComponentControllerTest extends TestCase
     {
         $response = $this->get('/api/components/1/grades/1');
         $response->assertOk();
-        $response->assertJsonStructure(
-            [
+        $response->assertJsonStructure([
+            'data' => [
                 'id',
                 'component_id',
                 'grade_type_id',
                 'created_at',
                 'updated_at',
-            ]
-        );
+            ],
+        ]);
     }
 }

@@ -78,7 +78,19 @@ This is a place for you to add your notes, plans, thinking and any feedback you 
 
 ### Notes
 
-I have had to alter the Sail configuration as it would not find the package *php8.1-dev*.
+First thing to note, the specification is broken. When I have an openapi spec, I tend to test against it to ensure I am
+adhering to it. I have used an OpenApi Validator package to validate the requests and responses against the spec in tests.
+
+By fulfilling the specification, I have produced a different API to the one that is expected by the front end. The
+front end expects all responses to be wrapped in data tags, but the specification does not specify this. It actually
+specifies that single items should not be wrapped in data tags.
+
+For this reason 12 of my feature tests currently fail. I did not fix the specification deliberately as I have produced
+working code that fulfils the front ends requirements.
+
+Process:
+
+Alter the Sail configuration as it would not find the package *php8.1-dev*.
 
 Framework upgraded to version 10.
 

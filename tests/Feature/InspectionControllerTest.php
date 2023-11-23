@@ -42,10 +42,12 @@ class InspectionControllerTest extends TestCase
         $this->getJson('/api/inspections/1')
             ->assertOk()
             ->assertJsonStructure([
-                'id',
-                'turbine_id',
-                'created_at',
-                'updated_at',
+                'data' => [
+                    'id',
+                    'turbine_id',
+                    'created_at',
+                    'updated_at',
+                ],
             ]);
     }
 
@@ -72,12 +74,14 @@ class InspectionControllerTest extends TestCase
         $this->getJson('/api/inspections/1/grades/1')
             ->assertOk()
             ->assertJsonStructure([
-                'id',
-                'inspection_id',
-                'component_id',
-                'grade_type_id',
-                'created_at',
-                'updated_at',
+                'data' => [
+                    'id',
+                    'inspection_id',
+                    'component_id',
+                    'grade_type_id',
+                    'created_at',
+                    'updated_at',
+                ],
             ]);
     }
 }
