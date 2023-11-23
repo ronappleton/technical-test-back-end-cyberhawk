@@ -48,4 +48,20 @@ class FarmServiceTest extends TestCase
         $this->assertNotNull($farms);
         $this->assertEquals(10, $farms->count());
     }
+
+    public function testTurbines(): void
+    {
+        $turbines = $this->farmService->turbines(1);
+
+        $this->assertNotNull($turbines);
+        $this->assertEquals(5, $turbines->count());
+    }
+
+    public function testTurbine(): void
+    {
+        $turbine = $this->farmService->turbine(1, 1);
+
+        $this->assertNotNull($turbine);
+        $this->assertEquals(1, $turbine->id);
+    }
 }
