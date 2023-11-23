@@ -103,6 +103,6 @@ Added ComponentType tests, migration, model, resource, factory, routes, and cont
 
 Added Component tests, migration, model, resource, factory, routes, and controller.
 
-
+Added Grade tests, migration, model, resource, factory, routes, and controller.
 
 

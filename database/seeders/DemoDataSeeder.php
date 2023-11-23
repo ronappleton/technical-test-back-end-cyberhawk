@@ -30,6 +30,7 @@ class DemoDataSeeder extends Seeder
             ->create();
 
         $this->buildTurbines();
+        $this->buildGrades();
     }
 
     private function buildTurbines(): void
@@ -59,6 +60,20 @@ class DemoDataSeeder extends Seeder
                 'component_type_id' => $hubType->id,
                 'turbine_id' => $turbine->id,
             ]);
+        });
+    }
+
+    private function buildGrades(): void
+    {
+        Turbine::all()->each(function (Turbine $turbine) {
+            $turbine->inspections->each(function (Inspection $inspection) use ($turbine) {
+                $turbine->components->each(function (Component $component) use ($inspection) {
+                    $inspection->grades()->create([
+                        'component_id' => $component->id,
+                        'grade_type_id' => GradeType::all()->random()->id,
+                    ]);
+                });
+            });
         });
     }
 }

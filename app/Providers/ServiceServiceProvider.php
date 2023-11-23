@@ -17,6 +17,8 @@ use App\Contracts\ComponentTypeService as ComponentTypeServiceContract;
 use App\Services\ComponentTypeService;
 use App\Contracts\ComponentService as ComponentServiceContract;
 use App\Services\ComponentService;
+use App\Contracts\GradeService as GradeServiceContract;
+use App\Services\GradeService;
 
 class ServiceServiceProvider extends ServiceProvider
 {
@@ -33,5 +35,6 @@ class ServiceServiceProvider extends ServiceProvider
         $this->app->bind(GradeTypeServiceContract::class, GradeTypeService::class);
         $this->app->bind(ComponentTypeServiceContract::class, ComponentTypeService::class);
         $this->app->bind(ComponentServiceContract::class, ComponentService::class);
+        $this->app->bind(GradeServiceContract::class, GradeService::class);
     }
 }

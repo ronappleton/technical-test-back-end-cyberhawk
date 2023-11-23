@@ -3,6 +3,7 @@
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\ComponentTypeController;
 use App\Http\Controllers\FarmController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GradeTypeController;
 use App\Http\Controllers\TurbineController;
 use Illuminate\Support\Facades\Route;
@@ -59,9 +60,9 @@ Route::controller(ComponentController::class)
         Route::get('/components/{componentId}', 'show');
     });
 
-Route::controller(ComponentController::class)
+Route::controller(GradeController::class)
     ->group(function () {
-        Route::get('/components', 'index');
-        Route::get('/components/{componentId}', 'show');
+        Route::get('/grades', 'index');
+        Route::get('/grades/{gradeId}', 'show');
     });
 
