@@ -62,6 +62,8 @@ Route::controller(ComponentController::class)
     ->group(function () {
         Route::get('/components', 'index');
         Route::get('/components/{componentId}', 'show');
+        Route::get('/components/{componentId}/grades', 'grades');
+        Route::get('/components/{componentId}/grades/{gradeId}', 'grade');
     });
 
 Route::controller(GradeController::class)

@@ -52,4 +52,36 @@ class ComponentControllerTest extends TestCase
             ]
         );
     }
+
+    public function testGrades(): void
+    {
+        $response = $this->get('/api/components/1/grades');
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'component_id',
+                    'grade_type_id',
+                    'created_at',
+                    'updated_at',
+                ],
+            ],
+        ]);
+    }
+
+    public function testGrade(): void
+    {
+        $response = $this->get('/api/components/1/grades/1');
+        $response->assertOk();
+        $response->assertJsonStructure(
+            [
+                'id',
+                'component_id',
+                'grade_type_id',
+                'created_at',
+                'updated_at',
+            ]
+        );
+    }
 }

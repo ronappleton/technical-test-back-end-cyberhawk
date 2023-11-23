@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Models\Component;
+use App\Models\Grade;
 use App\Services\ComponentService;
 use Database\Seeders\DemoDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -37,5 +38,19 @@ class ComponentServiceTest extends TestCase
         $component = $this->componentService->findById(1);
         $this->assertInstanceOf(Component::class, $component);
         $this->assertEquals(1, $component->id);
+    }
+
+    public function testGrades(): void
+    {
+        $grades = $this->componentService->grades(1);
+        $this->assertInstanceOf(Grade::class, $grades->first());
+        $this->assertCount(3, $grades);
+    }
+
+    public function testGrade(): void
+    {
+        $grade = $this->componentService->grade(1, 1);
+        $this->assertInstanceOf(Grade::class, $grade);
+        $this->assertEquals(1, $grade->id);
     }
 }
