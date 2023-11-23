@@ -22,6 +22,6 @@ class TurbineController
 
     public function show(int $turbineId): JsonResource
     {
-        return new TurbineResource($this->turbineService->findById($turbineId));
+        return TurbineResource::make($this->turbineService->findById($turbineId));
     }
 }

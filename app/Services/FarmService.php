@@ -13,4 +13,14 @@ use Illuminate\Support\Collection;
 class FarmService extends DataService implements FarmServiceContract
 {
     protected string $model = Farm::class;
+
+    public function turbines(int $farmId): Collection
+    {
+        return $this->findById($farmId)->turbines;
+    }
+
+    public function turbine(int $farmId, int $turbineId): Model
+    {
+        return $this->turbines($farmId)->firstWhere('id', $turbineId);
+    }
 }

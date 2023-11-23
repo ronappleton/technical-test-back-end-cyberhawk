@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Contracts\FarmService;
+use App\Contracts\TurbineService;
 use App\Http\Resources\FarmResource;
+use App\Http\Resources\TurbineResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -22,6 +24,16 @@ class FarmController
 
     public function show(int $farmId): JsonResource
     {
-        return new FarmResource($this->farmService->findById($farmId));
+        return FarmResource::make($this->farmService->findById($farmId));
+    }
+
+    public function turbines(int $farmId): ResourceCollection
+    {
+        return TurbineResource::collection($this->farmService->findById($farmId)->turbines);
+    }
+
+    public function turbine(int $farmId, int $turbineId): JsonResource
+    {
+        return TurbineResource::make($this->farmService->turbine($farmId, $turbineId));
     }
 }

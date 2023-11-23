@@ -48,4 +48,34 @@ class FarmControllerTest extends TestCase
                 'updated_at',
             ]);
     }
+
+    public function testGetTurbines(): void
+    {
+        $this->getJson('/api/farms/1/turbines')
+            ->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    '*' => [
+                        'id',
+                        'name',
+                        'farm_id',
+                        'created_at',
+                        'updated_at',
+                    ],
+                ],
+            ]);
+    }
+
+    public function testGetTurbine(): void
+    {
+        $this->getJson('/api/farms/1/turbines/1')
+            ->assertOk()
+            ->assertJsonStructure([
+                'id',
+                'name',
+                'farm_id',
+                'created_at',
+                'updated_at',
+            ]);
+    }
 }
