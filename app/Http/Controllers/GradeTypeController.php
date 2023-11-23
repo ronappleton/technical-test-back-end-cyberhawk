@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Resources\GradeTypeResource;
-use App\Models\GradeType;
 use App\Contracts\GradeTypeService;
 
 class GradeTypeController

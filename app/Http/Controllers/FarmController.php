@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Contracts\FarmService;
-use App\Contracts\TurbineService;
 use App\Http\Resources\FarmResource;
 use App\Http\Resources\TurbineResource;
 use Illuminate\Http\Resources\Json\JsonResource;

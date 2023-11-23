@@ -6,8 +6,6 @@ namespace App\Http\Controllers;
 
 use App\Contracts\GradeService;
 use App\Http\Resources\GradeResource;
-use App\Models\Grade;
-use Illuminate\Http\Request;
 
 class GradeController
 {

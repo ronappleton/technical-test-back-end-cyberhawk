@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 
 use App\Contracts\ComponentService;
 use App\Http\Resources\ComponentResource;
-use App\Models\Component;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 

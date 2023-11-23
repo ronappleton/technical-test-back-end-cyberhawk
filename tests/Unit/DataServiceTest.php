@@ -14,7 +14,7 @@ class DataServiceTest extends TestCase
     {
         $this->expectException(DataServiceModelNotSet::class);
 
-        $service = new class extends DataService {
+        $service = new class () extends DataService {
             // Intentionally not set the Data Service Model
         };
 

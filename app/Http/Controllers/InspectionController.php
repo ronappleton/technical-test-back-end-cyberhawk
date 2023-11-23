@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Resources\InspectionResource;
-use App\Models\Inspection;
 use App\Contracts\InspectionService;
 use Illuminate\Routing\Controller;
 

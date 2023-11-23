@@ -65,4 +65,3 @@ Route::controller(GradeController::class)
         Route::get('/grades', 'index');
         Route::get('/grades/{gradeId}', 'show');
     });
-

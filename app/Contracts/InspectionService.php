@@ -6,5 +6,4 @@ namespace App\Contracts;
 
 interface InspectionService extends DataService
 {
-
 }
