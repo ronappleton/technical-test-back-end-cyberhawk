@@ -26,7 +26,7 @@ Route::controller(FarmController::class)
         Route::get('/farms/{farmId}', 'show');
         Route::get('/farms/{farmId}/turbines', 'turbines');
         Route::get('/farms/{farmId}/turbines/{turbineId}', 'turbine');
-    });
+    })->middleware('auth:sanctum');
 
 Route::controller(TurbineController::class)
     ->group(function () {

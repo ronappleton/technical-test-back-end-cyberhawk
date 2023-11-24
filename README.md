@@ -122,3 +122,5 @@ Added Inspection Grades Endpoints, and tests.
 Added Component Grades Endpoints, and tests.
 
 Added User, Sanctum, and Authentication.
+
+Rudimentary Login added to front end.

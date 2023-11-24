@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import { Dialog, Transition } from '@headlessui/react'
+import {Dialog, Transition} from '@headlessui/react'
 import {
     BrowserRouter,
     Routes,
@@ -10,19 +10,22 @@ import Farms from './Farms';
 import Farm from './Farm';
 import Turbines from './Turbines';
 import Turbine from './Turbine';
-import { FolderIcon, HomeIcon, MenuIcon, UsersIcon, XIcon } from '@heroicons/react/outline';
+import {FolderIcon, HomeIcon, MenuIcon, UsersIcon, XIcon, UserIcon} from '@heroicons/react/outline';
 import NavLink from './NavLink';
 import Inspections from './Inspections';
 import Inspection from './Inspection';
+import Login from "./Login";
+import Logout from "./Logout";
+import Private from "./Private";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 const navigation = [
-    { name: 'Wind Farms', href: '/farms', icon: HomeIcon },
-    { name: 'Turbines', href: '/turbines', icon: UsersIcon },
-    { name: 'Inspections', href: '/inspections', icon: FolderIcon },
+    {name: 'Wind Farms', href: '/farms', icon: HomeIcon},
+    {name: 'Turbines', href: '/turbines', icon: UsersIcon},
+    {name: 'Inspections', href: '/inspections', icon: FolderIcon},
 ]
 
 const App = () => {
@@ -30,7 +33,6 @@ const App = () => {
 
     return (
         <BrowserRouter>
-
             <>
                 <div>
                     <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -44,7 +46,7 @@ const App = () => {
                                 leaveFrom="opacity-100"
                                 leaveTo="opacity-0"
                             >
-                                <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+                                <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75"/>
                             </Transition.Child>
                             <Transition.Child
                                 as={Fragment}
@@ -72,15 +74,18 @@ const App = () => {
                                                 onClick={() => setSidebarOpen(false)}
                                             >
                                                 <span className="sr-only">Close sidebar</span>
-                                                <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                                                <XIcon className="h-6 w-6 text-white" aria-hidden="true"/>
                                             </button>
                                         </div>
                                     </Transition.Child>
                                     <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                                         <nav className="px-2 space-y-1">
                                             {navigation.map((item) => (
-                                                <NavLink item={item} key={item.name} />
+                                                <NavLink item={item} key={item.name}/>
                                             ))}
+                                            <Private>
+                                                <NavLink item={{name: 'Logout', href: 'logout', icon: UserIcon}}/>
+                                            </Private>
                                         </nav>
                                     </div>
 
@@ -99,8 +104,11 @@ const App = () => {
                             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                                 <nav className="flex-1 px-2 space-y-1">
                                     {navigation.map((item) => (
-                                        <NavLink item={item} key={item.name} />
+                                        <NavLink item={item} key={item.name}/>
                                     ))}
+                                    <Private>
+                                        <NavLink item={{name: 'Logout', href: 'logout', icon: UserIcon}}/>
+                                    </Private>
                                 </nav>
                             </div>
                         </div>
@@ -113,7 +121,7 @@ const App = () => {
                                 onClick={() => setSidebarOpen(true)}
                             >
                                 <span className="sr-only">Open sidebar</span>
-                                <MenuIcon className="h-6 w-6" aria-hidden="true" />
+                                <MenuIcon className="h-6 w-6" aria-hidden="true"/>
                             </button>
                         </div>
                         <main className="flex-1">
@@ -121,23 +129,27 @@ const App = () => {
                                 <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                                     <div className="py-4">
                                         <Routes>
-                                            <Route path="farms">
-                                                <Route path=":farmID" element={<Farm />}>
-                                                    <Route path="turbines">
-                                                        <Route path=":turbineID" element={<Turbine />} />
-                                                        <Route index element={<Turbines />} />
+                                            <Route element={<Private/>}>
+                                                <Route path="farms">
+                                                    <Route path=":farmID" element={<Farm/>}>
+                                                        <Route path="turbines">
+                                                            <Route path=":turbineID" element={<Turbine/>}/>
+                                                            <Route index element={<Turbines/>}/>
+                                                        </Route>
                                                     </Route>
+                                                    <Route index element={<Farms/>}/>
                                                 </Route>
-                                                <Route index element={<Farms />} />
+                                                <Route path="turbines">
+                                                    <Route path=":turbineID" element={<Turbine/>}/>
+                                                    <Route index element={<Turbines/>}/>
+                                                </Route>
+                                                <Route path="inspections">
+                                                    <Route path=":inspectionID" element={<Inspection/>}/>
+                                                    <Route index element={<Inspections/>}/>
+                                                </Route>
                                             </Route>
-                                            <Route path="turbines">
-                                                <Route path=":turbineID" element={<Turbine />} />
-                                                <Route index element={<Turbines />} />
-                                            </Route>
-                                            <Route path="inspections">
-                                                <Route path=":inspectionID" element={<Inspection />} />
-                                                <Route index element={<Inspections />} />
-                                            </Route>
+                                            <Route path="login" element={<Login/>}/>
+                                            <Route path="/logout" element={<Logout/>}/>
                                         </Routes>
                                     </div>
                                 </div>
@@ -150,8 +162,6 @@ const App = () => {
     );
 };
 
-App.propTypes = {
-
-};
+App.propTypes = {};
 
 export default App;
