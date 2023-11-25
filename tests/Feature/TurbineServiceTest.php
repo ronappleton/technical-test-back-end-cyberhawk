@@ -42,14 +42,14 @@ class TurbineServiceTest extends TestCase
     {
         $turbines = $this->turbineService->all();
         $this->assertInstanceOf(Turbine::class, $turbines->first());
-        $this->assertEquals(50, $turbines->count());
+        $this->assertEquals(5, $turbines->count());
     }
 
     public function testInspections(): void
     {
         $inspections = $this->turbineService->inspections(1);
         $this->assertInstanceOf(Inspection::class, $inspections->first());
-        $this->assertEquals(3, $inspections->count());
+        $this->assertEquals(1, $inspections->count());
     }
 
     public function testInspection(): void

@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Inspection;
+use App\Policies\InspectionPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Inspection::class => InspectionPolicy::class,
     ];
 
     /**
@@ -20,8 +24,10 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        // ...
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('admin') ? true : null;
+        });
     }
 }

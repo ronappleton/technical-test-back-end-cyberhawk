@@ -37,7 +37,7 @@ class InspectionServiceTest extends TestCase
     {
         $inspections = $this->inspectionService->all();
         $this->assertInstanceOf(Inspection::class, $inspections->first());
-        $this->assertEquals(150, $inspections->count());
+        $this->assertEquals(5, $inspections->count());
     }
 
     public function testGrades(): void

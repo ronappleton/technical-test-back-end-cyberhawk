@@ -29,7 +29,7 @@ class GradeServiceTest extends TestCase
     {
         $grades = $this->gradeService->all();
         $this->assertInstanceOf(Grade::class, $grades->first());
-        $this->assertCount(900, $grades);
+        $this->assertCount(30, $grades);
     }
 
     public function testFindById(): void

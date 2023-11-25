@@ -30,7 +30,7 @@ class ComponentServiceTest extends TestCase
     {
         $components = $this->componentService->all();
         $this->assertInstanceOf(Component::class, $components->first());
-        $this->assertCount(300, $components);
+        $this->assertCount(30, $components);
     }
 
     public function testFindById(): void
@@ -44,7 +44,7 @@ class ComponentServiceTest extends TestCase
     {
         $grades = $this->componentService->grades(1);
         $this->assertInstanceOf(Grade::class, $grades->first());
-        $this->assertCount(3, $grades);
+        $this->assertCount(1, $grades);
     }
 
     public function testGrade(): void

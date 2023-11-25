@@ -10,28 +10,20 @@ use App\Models\Farm;
 use App\Models\GradeType;
 use App\Models\Inspection;
 use App\Models\Turbine;
-use App\Models\User;
-use Hash;
+use Database\Seeders\Demo\UserSeeder;
 use Illuminate\Database\Seeder;
 
 class DemoDataSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->seedUser();
-        $this->seedGradeTypes();
+        $this->call(UserSeeder::class);
+
+        $this->seedgradeTypes();
         $this->seedComponentTypes();
         $this->seedFarm();
         $this->seedTurbines();
         $this->seedGrades();
-    }
-
-    private function seedUser(): void
-    {
-        User::create([
-            'username' => 'admin',
-            'password' => Hash::make('password'),
-        ]);
     }
 
     private function seedGradeTypes(): void

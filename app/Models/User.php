@@ -6,7 +6,9 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property-read int $id
@@ -14,10 +16,13 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $password
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property Collection $permissions
+ * @property Collection $roles
  */
 class User extends Authenticatable
 {
     use HasApiTokens;
+    use HasRoles;
 
     protected $fillable = [
         'username',
@@ -27,4 +32,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    protected function getDefaultGuardName(): string
+    {
+        return 'sanctum';
+    }
 }

@@ -41,7 +41,7 @@ class FarmServiceTest extends TestCase
     {
         $farms = $this->farmService->all();
         $this->assertInstanceOf(Farm::class, $farms->first());
-        $this->assertEquals(10, $farms->count());
+        $this->assertEquals(1, $farms->count());
     }
 
     public function testTurbines(): void

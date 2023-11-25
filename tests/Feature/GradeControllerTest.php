@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Database\Seeders\DemoDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Kirschbaum\OpenApiValidator\ValidatesOpenApiSpec;
@@ -19,6 +20,8 @@ class GradeControllerTest extends TestCase
         parent::setUp();
 
         $this->seed(DemoDataSeeder::class);
+
+        $this->actingAs(User::find(1));
     }
 
     public function testIndex(): void
