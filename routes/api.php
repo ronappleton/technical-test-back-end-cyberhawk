@@ -20,13 +20,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::controller(FarmController::class)
     ->group(function () {
         Route::get('/farms', 'index');
         Route::get('/farms/{farmId}', 'show');
         Route::get('/farms/{farmId}/turbines', 'turbines');
         Route::get('/farms/{farmId}/turbines/{turbineId}', 'turbine');
-    })->middleware('auth:sanctum');
+    });
 
 Route::controller(TurbineController::class)
     ->group(function () {
@@ -72,4 +73,5 @@ Route::controller(GradeTypeController::class)
         Route::get('/grade-types/{gradeType}', 'show');
     });
 
-Route::post('/token', 'TokenController');
+
+Route::post('/token', 'TokenController')->withoutMiddleware(['auth:sanctum']);
