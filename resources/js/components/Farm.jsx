@@ -34,8 +34,6 @@ const Farm = () => {
     if(farmsLoading) return <p>Loading...</p>;
     if(farmsError) return <p>Error</p>;
 
-
-
     return (
         <div className="">
             <h1 className="text-2xl font-semibold text-gray-900 mb-4">{farm.name}</h1>

@@ -16,7 +16,7 @@ import Inspections from './Inspections';
 import Inspection from './Inspection';
 import Login from "./Login";
 import Logout from "./Logout";
-import Private from "./Private";
+import ProtectedRoute from "./ProtectedRoute";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -30,6 +30,7 @@ const navigation = [
 
 const App = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const [loggedIn, setLoggedIn] = useState(false)
 
     return (
         <BrowserRouter>
@@ -83,9 +84,10 @@ const App = () => {
                                             {navigation.map((item) => (
                                                 <NavLink item={item} key={item.name}/>
                                             ))}
-                                            <Private>
-                                                <NavLink item={{name: 'Logout', href: 'logout', icon: UserIcon}}/>
-                                            </Private>
+                                            {loggedIn
+                                                ? <NavLink item={{name: 'Logout', href: 'logout', icon: UserIcon}}/>
+                                                : <NavLink item={{name: 'Login', href: 'login', icon: UserIcon}}/>
+                                            }
                                         </nav>
                                     </div>
 
@@ -106,9 +108,10 @@ const App = () => {
                                     {navigation.map((item) => (
                                         <NavLink item={item} key={item.name}/>
                                     ))}
-                                    <Private>
-                                        <NavLink item={{name: 'Logout', href: 'logout', icon: UserIcon}}/>
-                                    </Private>
+                                    {loggedIn
+                                        ? <NavLink item={{name: 'Logout', href: 'logout', icon: UserIcon}}/>
+                                        : <NavLink item={{name: 'Login', href: 'login', icon: UserIcon}}/>
+                                    }
                                 </nav>
                             </div>
                         </div>
@@ -129,7 +132,7 @@ const App = () => {
                                 <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                                     <div className="py-4">
                                         <Routes>
-                                            <Route element={<Private/>}>
+                                            <Route element={<ProtectedRoute/>}>
                                                 <Route path="farms">
                                                     <Route path=":farmID" element={<Farm/>}>
                                                         <Route path="turbines">
@@ -148,8 +151,8 @@ const App = () => {
                                                     <Route index element={<Inspections/>}/>
                                                 </Route>
                                             </Route>
-                                            <Route path="login" element={<Login/>}/>
-                                            <Route path="/logout" element={<Logout/>}/>
+                                            <Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>}/>
+                                            <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn}/>}/>
                                         </Routes>
                                     </div>
                                 </div>

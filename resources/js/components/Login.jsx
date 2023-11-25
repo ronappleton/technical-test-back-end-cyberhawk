@@ -1,23 +1,23 @@
 import React, {useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import {useNavigate} from "react-router-dom";
+import useAuthenticationService from "../hooks/services/useAuthenticationService";
 
-export default function Login() {
+export default function Login({setLoggedIn}) {
     const navigate = useNavigate();
+    const {login, loading, error} = useAuthenticationService();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
 
-        await axios.post('/api/token', {username: formData.get('username'), password: formData.get('password')})
-            .then(response => {
-                localStorage.setItem('token', response.data);
-                navigate('/farms', { replace: true })
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        await login(formData.get('username'), formData.get('password')).then(() => {
+            setLoggedIn(true);
+            navigate('/farms', {replace: true})
+        })
     }
+
+    if(loading) return <p>Loading...</p>;
+    if(error) return <p>Error</p>;
 
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -51,9 +51,20 @@ export default function Login() {
                         />
                     </div>
                     <div className="mt-6">
-                        <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-indigo-700 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-purple-600">
+                        <button
+                            className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-indigo-700 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-purple-600">
                             Login
                         </button>
+                    </div>
+                    <div className="mt-6">
+                        Admin Login <br/>
+                        Username: admin <br/>
+                        Password: password
+                    </div>
+                    <div className="mt-6">
+                        Non-Inspection Login <br/>
+                        Username: non-inspection <br/>
+                        Password: password
                     </div>
                 </form>
             </div>
