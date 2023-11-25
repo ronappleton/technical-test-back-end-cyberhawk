@@ -1,31 +1,33 @@
-import axios from "axios";
-import useTokenService from "./useTokenService";
-import {useState} from "react";
+import axios from 'axios';
+import { useState } from 'react';
+import useTokenService from './useTokenService';
 
 const useAuthenticationService = () => {
-    const { storeToken, removeToken } = useTokenService();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState();
+  const { storeToken, removeToken } = useTokenService();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
 
-    const login = async (username, password) => {
-        setLoading(true);
-        const response = await axios.post('/api/token', {username: username, password: password})
-            .then(response => {
-                storeToken(response.data)
-            })
-            .catch(err => {
-                setError(err);
-            });
-        setLoading(false);
+  const login = async (username, password) => {
+    setLoading(true);
+    const response = await axios.post('/api/token', { username, password })
+      .then((response) => {
+        storeToken(response.data);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+    setLoading(false);
 
-        return response;
-    }
+    return response;
+  };
 
-    const logout = async () => {
-        removeToken();
-    }
+  const logout = async () => {
+    removeToken();
+  };
 
-    return { login, logout, loading, error };
-}
+  return {
+    login, logout, loading, error,
+  };
+};
 
 export default useAuthenticationService;
