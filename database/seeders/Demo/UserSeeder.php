@@ -73,13 +73,17 @@ class UserSeeder extends Seeder
             'admin' => [
                 'view inspections',
                 'view grades',
+                'view grade types',
                 'view components',
+                'view component types',
                 'view turbines',
                 'view farms',
             ],
             'non-inspection' => [
                 'view turbines',
                 'view farms',
+                'view components',
+                'view component types',
             ],
         ];
 
