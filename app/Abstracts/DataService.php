@@ -7,11 +7,14 @@ namespace App\Abstracts;
 use App\Exceptions\DataServiceModelNotSet;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Collection;
 use App\Contracts\DataService as DataServiceContract;
 
 abstract class DataService implements DataServiceContract
 {
+    use AuthorizesRequests;
+
     protected string $model;
 
     /**
@@ -34,11 +37,15 @@ abstract class DataService implements DataServiceContract
 
     public function findById(int $id): Model
     {
+        $this->authorize('view', $this->getModel()::find($id));
+
         return $this->getModel()::findOrFail($id);
     }
 
     public function all(): ?Collection
     {
+        $this->authorize('viewAny', $this->getModel());
+
         return $this->getModel()::all();
     }
 }

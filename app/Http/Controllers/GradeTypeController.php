@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\GradeTypeResource;
 use App\Contracts\GradeTypeService;
 
-class GradeTypeController
+class GradeTypeController extends Controller
 {
     public function __construct(private readonly GradeTypeService $gradeTypeService)
     {

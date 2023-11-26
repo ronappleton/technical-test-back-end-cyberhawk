@@ -9,7 +9,6 @@ use App\Http\Resources\InspectionResource;
 use App\Contracts\InspectionService;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Routing\Controller;
 
 class InspectionController extends Controller
 {

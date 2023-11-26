@@ -8,7 +8,7 @@ use App\Contracts\UserService;
 use App\Http\Requests\TokenRequest;
 use Hash;
 
-class TokenController
+class TokenController extends Controller
 {
     public function __construct(private readonly UserService $userService)
     {

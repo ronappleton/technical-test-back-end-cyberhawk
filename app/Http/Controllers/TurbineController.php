@@ -10,7 +10,6 @@ use App\Http\Resources\InspectionResource;
 use App\Http\Resources\TurbineResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Routing\Controller;
 
 class TurbineController extends Controller
 {

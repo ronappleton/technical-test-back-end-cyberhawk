@@ -10,7 +10,7 @@ use App\Http\Resources\GradeResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ComponentController
+class ComponentController extends Controller
 {
     public function __construct(private readonly ComponentService $componentService)
     {

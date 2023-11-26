@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Tests\Feature\Controllers;
 
 use App\Models\User;
 use Database\Seeders\DemoDataSeeder;
@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Kirschbaum\OpenApiValidator\ValidatesOpenApiSpec;
 use Tests\TestCase;
 
-class TurbineControllerTest extends TestCase
+class InspectionControllerTest extends TestCase
 {
     use RefreshDatabase;
     use ValidatesOpenApiSpec;
@@ -24,41 +24,9 @@ class TurbineControllerTest extends TestCase
         $this->actingAs(User::find(1));
     }
 
-    public function testGetTurbines(): void
+    public function testGetInspections(): void
     {
-        $this->getJson('/api/turbines')
-            ->assertOk()
-            ->assertJsonStructure([
-                'data' => [
-                    '*' => [
-                        'id',
-                        'name',
-                        'farm_id',
-                        'created_at',
-                        'updated_at',
-                    ],
-                ],
-            ]);
-    }
-
-    public function testGetTurbine(): void
-    {
-        $this->getJson('/api/turbines/1')
-            ->assertOk()
-            ->assertJsonStructure([
-                'data' => [
-                    'id',
-                    'name',
-                    'farm_id',
-                    'created_at',
-                    'updated_at',
-                ],
-            ]);
-    }
-
-    public function testGetTurbineInspections(): void
-    {
-        $this->getJson('/api/turbines/1/inspections')
+        $this->getJson('/api/inspections')
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [
@@ -72,9 +40,9 @@ class TurbineControllerTest extends TestCase
             ]);
     }
 
-    public function testGetTurbineInspection(): void
+    public function testGetInspection(): void
     {
-        $this->getJson('/api/turbines/1/inspections/1')
+        $this->getJson('/api/inspections/1')
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [
@@ -86,16 +54,17 @@ class TurbineControllerTest extends TestCase
             ]);
     }
 
-    public function testGetTurbineComponents(): void
+    public function testGetInspectionGrades(): void
     {
-        $this->getJson('/api/turbines/1/components')
+        $this->getJson('/api/inspections/1/grades')
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [
                     '*' => [
                         'id',
-                        'component_type_id',
-                        'turbine_id',
+                        'inspection_id',
+                        'component_id',
+                        'grade_type_id',
                         'created_at',
                         'updated_at',
                     ],
@@ -103,15 +72,16 @@ class TurbineControllerTest extends TestCase
             ]);
     }
 
-    public function testGetTurbineComponent(): void
+    public function testGetInspectionGrade(): void
     {
-        $this->getJson('/api/turbines/1/components/1')
+        $this->getJson('/api/inspections/1/grades/1')
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [
                     'id',
-                    'component_type_id',
-                    'turbine_id',
+                    'inspection_id',
+                    'component_id',
+                    'grade_type_id',
                     'created_at',
                     'updated_at',
                 ],

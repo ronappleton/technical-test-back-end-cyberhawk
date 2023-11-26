@@ -8,7 +8,7 @@ use App\Contracts\ComponentTypeService;
 use App\Http\Resources\ComponentTypeResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ComponentTypeController
+class ComponentTypeController extends Controller
 {
     public function __construct(private readonly ComponentTypeService $componentTypeService)
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Tests\Feature\Controllers;
 
 use App\Models\User;
 use Database\Seeders\DemoDataSeeder;
@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Kirschbaum\OpenApiValidator\ValidatesOpenApiSpec;
 use Tests\TestCase;
 
-class GradeTypeControllerTest extends TestCase
+class ComponentTypeControllerTest extends TestCase
 {
     use RefreshDatabase;
     use ValidatesOpenApiSpec;
@@ -26,7 +26,7 @@ class GradeTypeControllerTest extends TestCase
 
     public function testIndex(): void
     {
-        $this->get('/api/grade-types')
+        $this->get('/api/component-types')
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [
@@ -42,7 +42,7 @@ class GradeTypeControllerTest extends TestCase
 
     public function testShow(): void
     {
-        $this->get('/api/grade-types/1')
+        $this->get('/api/component-types/1')
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [

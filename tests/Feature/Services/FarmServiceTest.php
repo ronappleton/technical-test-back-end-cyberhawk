@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Feature;
+namespace Tests\Feature\Services;
 
 use App\Models\Farm;
 use App\Models\Turbine;

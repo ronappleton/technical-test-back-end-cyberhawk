@@ -9,7 +9,6 @@ use App\Http\Resources\FarmResource;
 use App\Http\Resources\TurbineResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Routing\Controller;
 
 class FarmController extends Controller
 {
