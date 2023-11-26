@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Grade;
 use App\Models\Inspection;
+use App\Policies\GradesPolicy;
 use App\Policies\InspectionPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -17,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         Inspection::class => InspectionPolicy::class,
+        Grade::class => GradesPolicy::class,
     ];
 
     /**

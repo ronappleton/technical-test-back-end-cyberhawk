@@ -73,6 +73,4 @@ Route::controller(GradeTypeController::class)
         Route::get('/grade-types/{gradeType}', 'show');
     });
 
-Route::get('/user', 'UserController');
-
 Route::post('/token', 'TokenController')->withoutMiddleware(['auth:sanctum']);
