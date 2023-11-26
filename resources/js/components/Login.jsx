@@ -1,17 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuthenticationService from '../hooks/services/useAuthenticationService';
+import useLocalStorage from '../hooks/services/useLocalStorage';
 
-export default function Login({ setLoggedIn }) {
+export default function Login({ setLoggedIn, setPermissions }) {
   const navigate = useNavigate();
   const { login, loading, error } = useAuthenticationService();
+  const { getPermissions } = useLocalStorage();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    await login(formData.get('username'), formData.get('password')).then(() => {
+    await login(formData.get('username'), formData.get('password')).then(async () => {
       setLoggedIn(true);
+      setPermissions(getPermissions());
       navigate('/farms', { replace: true });
     });
   };
@@ -59,19 +62,15 @@ export default function Login({ setLoggedIn }) {
           </div>
           <div className="mt-6">
             Admin Login
-            {' '}
             <br />
             Username: admin
-            {' '}
             <br />
             Password: password
           </div>
           <div className="mt-6">
             Non-Inspection Login
-            {' '}
             <br />
             Username: non-inspection
-            {' '}
             <br />
             Password: password
           </div>

@@ -24,15 +24,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const navigation = [
-  { name: 'Wind Farms', href: '/farms', icon: HomeIcon },
-  { name: 'Turbines', href: '/turbines', icon: UsersIcon },
-  { name: 'Inspections', href: '/inspections', icon: FolderIcon },
-];
-
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [permissions, setPermissions] = useState(null);
 
   return (
     <BrowserRouter>
@@ -83,9 +78,27 @@ function App() {
                   </Transition.Child>
                   <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                     <nav className="px-2 space-y-1">
-                      {navigation.map((item) => (
-                        <NavLink item={item} key={item.name} />
-                      ))}
+                      <NavLink
+                        item={{
+                          name: 'Wind Farms', href: '/farms', icon: HomeIcon,
+                        }}
+                        permissions={permissions}
+                        ability="view farms"
+                      />
+                      <NavLink
+                        item={{
+                          name: 'Turbines', href: '/turbines', icon: UsersIcon,
+                        }}
+                        permissions={permissions}
+                        ability="view turbines"
+                      />
+                      <NavLink
+                        item={{
+                          name: 'Inspections', href: '/inspections', icon: FolderIcon,
+                        }}
+                        permissions={permissions}
+                        ability="view inspections"
+                      />
                       {loggedIn
                         ? <NavLink item={{ name: 'Logout', href: 'logout', icon: UserIcon }} />
                         : <NavLink item={{ name: 'Login', href: 'login', icon: UserIcon }} />}
@@ -106,9 +119,27 @@ function App() {
             <div className="flex-1 flex flex-col min-h-0 bg-indigo-700">
               <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                 <nav className="flex-1 px-2 space-y-1">
-                  {navigation.map((item) => (
-                    <NavLink item={item} key={item.name} />
-                  ))}
+                  <NavLink
+                    item={{
+                      name: 'Wind Farms', href: '/farms', icon: HomeIcon,
+                    }}
+                    permissions={permissions}
+                    ability="view farms"
+                  />
+                  <NavLink
+                    item={{
+                      name: 'Turbines', href: '/turbines', icon: UsersIcon,
+                    }}
+                    permissions={permissions}
+                    ability="view turbines"
+                  />
+                  <NavLink
+                    item={{
+                      name: 'Inspections', href: '/inspections', icon: FolderIcon,
+                    }}
+                    permissions={permissions}
+                    ability="view inspections"
+                  />
                   {loggedIn
                     ? <NavLink item={{ name: 'Logout', href: 'logout', icon: UserIcon }} />
                     : <NavLink item={{ name: 'Login', href: 'login', icon: UserIcon }} />}
@@ -151,8 +182,8 @@ function App() {
                           <Route index element={<Inspections />} />
                         </Route>
                       </Route>
-                      <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-                      <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
+                      <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setPermissions={setPermissions} />} />
+                      <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} setPermissions={setPermissions} />} />
                     </Routes>
                   </div>
                 </div>

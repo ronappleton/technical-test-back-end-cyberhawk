@@ -5,14 +5,18 @@ import {
   useMatch,
   useResolvedPath,
 } from 'react-router-dom';
+import useAuthorisationService from '../hooks/services/useAuthorisationService';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-function NavLink({ item }) {
+function NavLink({ item, permissions, ability }) {
   const resolved = useResolvedPath(item.href);
   const match = useMatch(`${resolved.pathname}*`);
+  const { can } = useAuthorisationService();
+
+  if (ability && !can(ability, permissions)) return null;
 
   return (
     <Link

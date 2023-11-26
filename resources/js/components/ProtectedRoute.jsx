@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import useTokenService from '../hooks/services/useTokenService';
+import useLocalStorage from '../hooks/services/useLocalStorage';
 
 function ProtectedRoute({ children }) {
-  const { retrieveToken } = useTokenService();
-  const token = retrieveToken();
+  const { getToken } = useLocalStorage();
+  const token = getToken();
 
   if (!token) {
     return <Navigate to="/login" />;
