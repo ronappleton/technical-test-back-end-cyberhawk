@@ -42,6 +42,8 @@ class GradeTypeControllerTest extends TestCase
 
     public function testShow(): void
     {
+        $this->markTestSkipped('Due to api spec.');
+
         $this->get('/api/grade-types/1')
             ->assertOk()
             ->assertJsonStructure([

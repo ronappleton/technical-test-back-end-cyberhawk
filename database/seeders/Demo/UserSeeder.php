@@ -53,7 +53,9 @@ class UserSeeder extends Seeder
         $permissions = [
             'view inspections',
             'view grades',
+            'view grade types',
             'view components',
+            'view component types',
             'view turbines',
             'view farms',
         ];

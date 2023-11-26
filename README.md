@@ -88,6 +88,20 @@ specifies that single items should not be wrapped in data tags.
 For this reason 12 of my feature tests currently fail. I did not fix the specification deliberately as I have produced
 working code that fulfils the front ends requirements.
 
+I gave it about 10 hours in total, but I did not time it. I did not complete the task, but I did get a lot done.
+
+I use Ubuntu on my personal machine and I don't think Sail and Ubuntu like each other very much but I managed.
+
+I added most of the list, add tests, authentication, and authorisation. I added coding style guidelines for both the
+back end and the front end.
+
+I tried to keep my commits as logical as possible.
+
+I ensured I added the authentication and authorisation to the front end as well as the back end as I considered it
+a little pointless to add it back end only.
+
+The below list is pretty much the process I followed.
+
 Process:
 
 Alter the Sail configuration as it would not find the package *php8.1-dev*.
@@ -124,3 +138,9 @@ Added Component Grades Endpoints, and tests.
 Added User, Sanctum, and Authentication.
 
 Rudimentary Login added to front end.
+
+Added Sanctum Middleware to all routes.
+
+Added Authorisation to back end.
+
+Added Authorisation to front end.

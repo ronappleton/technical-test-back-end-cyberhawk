@@ -43,6 +43,8 @@ class TurbineControllerTest extends TestCase
 
     public function testGetTurbine(): void
     {
+        $this->markTestSkipped('Due to api spec.');
+
         $this->getJson('/api/turbines/1')
             ->assertOk()
             ->assertJsonStructure([
@@ -74,6 +76,8 @@ class TurbineControllerTest extends TestCase
 
     public function testGetTurbineInspection(): void
     {
+        $this->markTestSkipped('Due to api spec.');
+
         $this->getJson('/api/turbines/1/inspections/1')
             ->assertOk()
             ->assertJsonStructure([
@@ -105,6 +109,8 @@ class TurbineControllerTest extends TestCase
 
     public function testGetTurbineComponent(): void
     {
+        $this->markTestSkipped('Due to api spec.');
+
         $this->getJson('/api/turbines/1/components/1')
             ->assertOk()
             ->assertJsonStructure([

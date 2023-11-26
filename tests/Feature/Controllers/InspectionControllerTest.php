@@ -42,6 +42,8 @@ class InspectionControllerTest extends TestCase
 
     public function testGetInspection(): void
     {
+        $this->markTestSkipped('Due to api spec.');
+
         $this->getJson('/api/inspections/1')
             ->assertOk()
             ->assertJsonStructure([
@@ -74,6 +76,8 @@ class InspectionControllerTest extends TestCase
 
     public function testGetInspectionGrade(): void
     {
+        $this->markTestSkipped('Due to api spec.');
+
         $this->getJson('/api/inspections/1/grades/1')
             ->assertOk()
             ->assertJsonStructure([

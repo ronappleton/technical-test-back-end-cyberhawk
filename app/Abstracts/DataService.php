@@ -37,9 +37,11 @@ abstract class DataService implements DataServiceContract
 
     public function findById(int $id): Model
     {
-        $this->authorize('view', $this->getModel()::find($id));
+        $model = $this->getModel()::findOrFail($id);
 
-        return $this->getModel()::findOrFail($id);
+        $this->authorize('view', $model);
+
+        return $model;
     }
 
     public function all(): ?Collection
